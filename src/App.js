@@ -11,7 +11,7 @@ function App() {
       {/* <TextForm heading="Enter any text :" /> */}
       {/* <About /> */}
       <Router>
-        <Navbar name="Encryption" />
+        <Navbar name="cryption" />
         <Routes>
           <Route exact path="/about" element={<About />} />
           <Route exact path="/" element={<TextForm heading="Enter any text :" />} />
