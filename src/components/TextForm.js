@@ -1,19 +1,20 @@
 import React, { useState } from "react";
+import { createPopper } from "@popperjs/core/lib/popper-lite.js";
 
 export default function TextForm(props) {
   const [text, setText] = useState("Enter text here");
   const [result, setAns] = useState("Choose an option to analyze");
-  const handleUpClick = () => {
 
-    // console.log("Uppercase was clicked" + text);
+  const handleUpClick = () => {
+    // //console.log("Uppercase was clicked" + text);
     let newText = text;
     let charArray = newText.split("");
-    // console.log(charArray);
+    // //console.log(charArray);
     let intARray = [0];
     for (let i = 0; i < charArray.length; i++) {
       intARray[i] = charArray[i].charCodeAt(0);
     }
-    // console.log(intARray);
+    // //console.log(intARray);
     let binString = "";
     for (let i = 0; i < intARray.length; i++) {
       let a = intARray[i].toString(2);
@@ -22,7 +23,7 @@ export default function TextForm(props) {
       }
       binString += a;
     }
-    // console.log(binString);
+    // //console.log(binString);
     while (binString.length % 6 !== 0) {
       binString += "0";
     }
@@ -35,32 +36,31 @@ export default function TextForm(props) {
         newbinString += "0";
       }
     }
-    // console.log(newbinString);
+    // //console.log(newbinString);
     let result = [0];
     for (let i = 0; i * 6 < newbinString.length; i++) {
       result[i] = 47 + parseInt(newbinString.substring(i * 6, (i + 1) * 6), 2);
     }
-    // console.log(result);
+    // ////console.log(result);
     let newResult = "";
     for (let i = 0; i < result.length; i++) {
       newResult += String.fromCharCode(result[i]);
     }
-    // console.log(newResult);
-    // console.log(binString);
+    // ////console.log(newResult);
+    // ////console.log(binString);
 
     setAns(newResult);
   };
 
   const handleLowClick = () => {
- 
     let newText = text;
     let charArray = newText.split("");
-    // console.log(charArray);
+    // ////console.log(charArray);
     let intARray = [0];
     for (let i = 0; i < charArray.length; i++) {
       intARray[i] = charArray[i].charCodeAt(0) - 47;
     }
-    // console.log(intARray);
+    // ////console.log(intARray);
     let binString = "";
     for (let i = 0; i < intARray.length; i++) {
       let a = intARray[i].toString(2);
@@ -69,7 +69,7 @@ export default function TextForm(props) {
       }
       binString += a;
     }
-    // console.log(binString);
+    // //console.log(binString);
 
     let newbinString = "";
     for (let i = 0; i < binString.length; i++) {
@@ -79,36 +79,35 @@ export default function TextForm(props) {
         newbinString += "0";
       }
     }
-    // console.log(newbinString);
+    // //console.log(newbinString);
     let result = [0];
     for (let i = 0; i * 8 < newbinString.length; i++) {
       result[i] = parseInt(newbinString.substring(i * 8, (i + 1) * 8), 2);
     }
-    // console.log(result);
+    // //console.log(result);
     let newResult = "";
     for (let i = 0; i < result.length; i++) {
       newResult += String.fromCharCode(result[i]);
     }
-    // console.log(newResult);
-    // console.log(binString);
+    // //console.log(newResult);
+    // //console.log(binString);
 
     setAns(newResult);
   };
 
   const handleClearClick = () => {
-    // console.log("Uppercase was clicked" + text);
+    // //console.log("Uppercase was clicked" + text);
     let newText = "";
     setText(newText);
     setAns(newText);
   };
 
   const handleOnChange = (event) => {
-
     setText(event.target.value);
-    console.log(text);
+    //console.log(text);
     handleUpClick();
 
-    // console.log("On change" + text);
+    // //console.log("On change" + text);
   };
   const er = () => {
     alert("You can't type here");
@@ -154,10 +153,14 @@ export default function TextForm(props) {
         <button
           className="btn btn-secondary my-3 mx-2"
           onClick={handleCopy}
+          data-bs-toggle="popover"
+          data-bs-title="Popover title"
+          data-bs-content="And here's some amazing content. It's very engaging. Right?"
           //   style={{ margin: "10px" }}
         >
           Copy Result
         </button>
+
         <button
           className="btn btn-warning my-3 mx-2"
           onClick={handleClearClick}
