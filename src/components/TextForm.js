@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { createPopper } from "@popperjs/core/lib/popper-lite.js";
+import { createPopper } from "@popperjs/core";
+
+const button = document.querySelector("#button");
+const tooltip = document.querySelector("#tooltip");
+
+// Pass the button, the tooltip, and some options, and Popper will do the
+// magic positioning for you:
+createPopper(button, tooltip, {
+  placement: "right",
+});
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter text here");
+  const [text, setText] = useState("");
   const [result, setAns] = useState("Choose an option to analyze");
 
   const handleUpClick = () => {
@@ -126,9 +135,14 @@ export default function TextForm(props) {
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"
+          placeholder="Enter text here"
           rows="4"
           value={text}
           onChange={handleOnChange}
+          style={{
+            "text-shadow": "0 .05rem .1rem rgba(0, 0, 0, .5)",
+            "box-shadow": "#dee2e6b3 1rem 1rem 4rem 3rem inset",
+          }}
         ></textarea>
         <div
           className="btn-group"
@@ -153,22 +167,21 @@ export default function TextForm(props) {
         <button
           className="btn btn-secondary my-3 mx-2"
           onClick={handleCopy}
-          data-bs-toggle="popover"
-          data-bs-title="Popover title"
-          data-bs-content="And here's some amazing content. It's very engaging. Right?"
-          //   style={{ margin: "10px" }}
-        >
+          title="Copy to clipboard"
+          style={{ color: "white" }}
+          >
           Copy Result
         </button>
 
         <button
           className="btn btn-warning my-3 mx-2"
           onClick={handleClearClick}
+          title="Clear text"
+          // style={{ color: "white" }}
           //   style={{ margin: "10px" }}
         >
           Clear
         </button>
-
         <h1 className="my-3">Results :</h1>
         <textarea
           className="form-control"
@@ -176,6 +189,10 @@ export default function TextForm(props) {
           rows="4"
           value={result}
           onChange={er}
+          style={{
+            "text-shadow": "0 .05rem .1rem rgba(0, 0, 0, .5)",
+            "box-shadow": "#dee2e6b3 1rem 1rem 4rem 3rem inset",
+          }}
         ></textarea>
       </div>
       <div className="container my-3">

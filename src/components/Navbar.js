@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" 
+    style={{position:"sticky",top:"0",zIndex:"1"}}
+    >
+    
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -69,6 +72,7 @@ export default function Navbar(props) {
               Search
             </button>
           </form> */}
+          
         </div>
       </div>
     </nav>
