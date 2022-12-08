@@ -200,8 +200,6 @@ export default function TextForm(props) {
         <p>
           {text.split(" ").length} words and {text.length} characters
         </p>
-        <h2>Preview</h2>
-        <p>{text}</p>
       </div>
     </div>
   );
